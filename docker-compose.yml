@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  pritunl:
+    image: docker.io/pritunl/pritunl-zero
+    container_name: pritunl-zero
+    ports:
+        - '80:80'
+        - '443:443'
+    environment:
+        - 'MONGO_URI=mongodb://mongo:27017/pritunl-zero'
+        - 'NODE_ID=657072de9292bdf9ff006990'
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017
